@@ -156,7 +156,7 @@ export default function BookingForm({ onCreated }) {
 
         <div className="flex items-center gap-3">
           {(() => {
-            const ctaLabel = service === 'repair' ? 'Book Repair' : service === 'installation' ? 'Book Installation' : service === 'maintenance' ? 'Book Maintenance' : 'Book Service'
+            const ctaLabel = service === 'repair' ? 'Request Repair' : service === 'installation' ? 'Request Installation' : service === 'maintenance' ? 'Request Maintenance' : 'Request Service'
             return (
               <button type="submit" className="inline-flex w-full md:w-auto items-center gap-2 btn-cta cta-shadow bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-3 rounded-lg shadow hover:scale-105 transform transition justify-center"> 
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -170,7 +170,7 @@ export default function BookingForm({ onCreated }) {
           {status === 'loading' && <span className="text-sm text-gray-500">Sending...</span>}
           {status === 'error' && <span className="text-sm text-red-600">Failed to submit</span>}
         </div>
-        <div className="mt-2 text-xs cta-sub">We’ll call to confirm your slot — no spam, only booking info.</div>
+        <div className="mt-2 text-xs cta-sub">We’ll call to confirm your slot — no spam, only service info.</div>
       </form>
 
       {showToast && (
@@ -181,7 +181,7 @@ export default function BookingForm({ onCreated }) {
             </svg>
           </div>
           <div>
-            <div className="font-medium">Booking confirmed</div>
+            <div className="font-medium">Service confirmed</div>
             <div className="text-sm text-gray-600">Our technician will contact you soon.</div>
           </div>
         </div>

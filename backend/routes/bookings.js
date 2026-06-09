@@ -1,6 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const Booking = require('../models/Booking');
+const jwt = require('jsonwebtoken')
+
+const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret'
+
+function requireTech(req, res, next) {
+  const auth = req.headers.authorization || req.headers.Authorization
+  if (!auth || !auth.startsWith('Bearer ')) return res.status(401).json({ error: 'Unauthorized' })
+  const token = auth.split(' ')[1]
+  try {
+    const payload = jwt.verify(token, JWT_SECRET)
+    if (payload.role !== 'tech') return res.status(403).json({ error: 'Forbidden' })
+    req.tech = payload
+    next()
+  } catch (err) {
+    return res.status(401).json({ error: 'Invalid token' })
+  }
+}
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
@@ -37,11 +54,39 @@ router.post('/', upload.single('image'), async (req, res) => {
 // List bookings
 router.get('/', async (req, res) => {
   try {
-    const bookings = await Booking.find().sort({ createdAt: -1 });
+    const { status } = req.query
+    const filter = {}
+    if (status) filter.status = status
+    const bookings = await Booking.find(filter).sort({ createdAt: -1 });
     res.json(bookings);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
+// Get single booking
+router.get('/:id', async (req, res) => {
+  try {
+    const b = await Booking.findById(req.params.id)
+    if (!b) return res.status(404).json({ error: 'Not found' })
+    res.json(b)
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// Update booking status/note or other allowed fields
+router.patch('/:id', requireTech, async (req, res) => {
+  try {
+    const allowed = ['status', 'note']
+    const updates = {}
+    Object.keys(req.body).forEach(k => { if (allowed.includes(k)) updates[k] = req.body[k] })
+    const updated = await Booking.findByIdAndUpdate(req.params.id, updates, { new: true })
+    if (!updated) return res.status(404).json({ error: 'Not found' })
+    res.json(updated)
+  } catch (err) {
+    res.status(400).json({ error: err.message })
+  }
+})
 
 module.exports = router;

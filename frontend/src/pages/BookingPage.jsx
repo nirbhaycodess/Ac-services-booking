@@ -16,8 +16,8 @@ export default function BookingPage() {
       <div className="glass rounded-2xl p-4 md:p-10 shadow-xl animate-fadeUp">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h2 className="text-2xl font-semibold mb-2">Book a Repair</h2>
-            <p className="text-sm text-gray-600 mb-4">Fill out the form and our technician will contact you to confirm the booking.</p>
+            <h2 className="text-2xl font-semibold mb-2">Request a Repair</h2>
+            <p className="text-sm text-gray-600 mb-4">Fill out the form and our technician will contact you to confirm the service.</p>
             <BookingForm onCreated={b => setBookings([b, ...bookings])} />
           </div>
 
@@ -54,7 +54,7 @@ export default function BookingPage() {
               </div>
             </div>
 
-            <h4 className="text-sm font-semibold mb-2">Recent Bookings</h4>
+            <h4 className="text-sm font-semibold mb-2">Recent Services</h4>
             <div className="space-y-3 max-h-72 sm:max-h-80 overflow-auto pr-2">
               {bookings.map(b => (
                 <div key={b._id} className="p-3 border rounded-md hover:shadow-sm bg-white card-transition hover:-translate-y-1">
@@ -68,7 +68,7 @@ export default function BookingPage() {
                   <div className="mt-1 text-sm text-gray-600">{(b.city || b.landmark || b.district || b.pincode) ? [b.city, b.landmark, b.district, b.pincode].filter(Boolean).join(', ') : b.address}</div>
                 </div>
               ))}
-              {bookings.length === 0 && <div className="text-sm text-gray-500">No bookings yet.</div>}
+              {bookings.length === 0 && <div className="text-sm text-gray-500">No services requested yet.</div>}
             </div>
           </aside>
         </div>

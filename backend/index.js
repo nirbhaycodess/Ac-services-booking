@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bookingsRouter = require('./routes/bookings');
+const authRouter = require('./routes/auth');
 const path = require('path');
 
 const app = express();
@@ -20,6 +21,7 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   });
 
 app.use('/api/bookings', bookingsRouter);
+app.use('/api/auth', authRouter);
 
 // Serve uploaded images
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
