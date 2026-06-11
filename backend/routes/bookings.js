@@ -37,6 +37,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Create booking (accepts optional image under field name `image`)
+// Create booking (accepts optional image under field name `image`)
 router.post('/', upload.single('image'), async (req, res) => {
   try {
     const bookingData = { ...req.body };
@@ -86,6 +87,25 @@ router.patch('/:id', requireTech, async (req, res) => {
     res.json(updated)
   } catch (err) {
     res.status(400).json({ error: err.message })
+  }
+})
+
+// Delete booking (technician only)
+router.delete('/:id', requireTech, async (req, res) => {
+  try {
+    const b = await Booking.findById(req.params.id)
+    if (!b) return res.status(404).json({ error: 'Not found' })
+
+    // remove uploaded image file if exists
+    if (b.imageUrl) {
+      const filePath = path.join(__dirname, '..', b.imageUrl.replace(/^\//, ''))
+      try { if (fs.existsSync(filePath)) fs.unlinkSync(filePath) } catch (e) { console.warn('Failed to remove image file', e) }
+    }
+
+    await Booking.findByIdAndDelete(req.params.id)
+    res.json({ success: true })
+  } catch (err) {
+    res.status(500).json({ error: err.message })
   }
 })
 

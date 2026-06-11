@@ -1,16 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import BookingForm from '../components/BookingForm'
 
 export default function BookingPage() {
-  const [bookings, setBookings] = useState([])
-
-  useEffect(() => {
-    fetch('http://localhost:4000/api/bookings')
-      .then(res => res.json())
-      .then(setBookings)
-      .catch(console.error)
-  }, [])
-
   return (
     <main className="mt-12 max-w-6xl mx-auto px-6 pb-20 relative z-10">
       <div className="glass rounded-2xl p-4 md:p-10 shadow-xl animate-fadeUp">
@@ -18,7 +9,7 @@ export default function BookingPage() {
           <div>
             <h2 className="text-2xl font-semibold mb-2">Request a Repair</h2>
             <p className="text-sm text-gray-600 mb-4">Fill out the form and our technician will contact you to confirm the service.</p>
-            <BookingForm onCreated={b => setBookings([b, ...bookings])} />
+            <BookingForm />
           </div>
 
           <aside>
@@ -52,23 +43,6 @@ export default function BookingPage() {
                   <div className="text-sm text-gray-600">High customer satisfaction rates.</div>
                 </div>
               </div>
-            </div>
-
-            <h4 className="text-sm font-semibold mb-2">Recent Services</h4>
-            <div className="space-y-3 max-h-72 sm:max-h-80 overflow-auto pr-2">
-              {bookings.map(b => (
-                <div key={b._id} className="p-3 border rounded-md hover:shadow-sm bg-white card-transition hover:-translate-y-1">
-                  <div className="flex justify-between">
-                    <div>
-                      <div className="font-medium">{b.name}</div>
-                      <div className="text-sm text-gray-600">{b.phone}</div>
-                    </div>
-                    <div className="text-sm text-gray-700">{b.date}</div>
-                  </div>
-                  <div className="mt-1 text-sm text-gray-600">{(b.city || b.landmark || b.district || b.pincode) ? [b.city, b.landmark, b.district, b.pincode].filter(Boolean).join(', ') : b.address}</div>
-                </div>
-              ))}
-              {bookings.length === 0 && <div className="text-sm text-gray-500">No services requested yet.</div>}
             </div>
           </aside>
         </div>

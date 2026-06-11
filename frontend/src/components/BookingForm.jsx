@@ -33,6 +33,7 @@ export default function BookingForm({ onCreated }) {
       setForm({ name: '', phone: '', email: '', address: '', city: '', landmark: '', district: '', pincode: '', repairType: '', date: '', time: '', message: '' })
       setImageFile(null)
       setPreview(null)
+      // data may be { booking, token }
       onCreated && onCreated(data)
       setShowToast(true)
     } catch (err) {
@@ -40,7 +41,7 @@ export default function BookingForm({ onCreated }) {
       setStatus('error')
     }
   }
-
+        
   const handleImageChange = e => {
     const f = e.target.files && e.target.files[0]
     if (!f) return setImageFile(null)
@@ -181,8 +182,9 @@ export default function BookingForm({ onCreated }) {
             </svg>
           </div>
           <div>
-            <div className="font-medium">Service confirmed</div>
-            <div className="text-sm text-gray-600">Our technician will contact you soon.</div>
+                  <div className="font-medium">Service confirmed</div>
+                  <div className="text-sm text-gray-600">Our technician will contact you soon.</div>
+                  
           </div>
         </div>
       )}
