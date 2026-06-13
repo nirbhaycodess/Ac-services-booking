@@ -32,8 +32,8 @@ export default function TechLogin() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-sky-50 p-6">
-      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-        <div className="hidden md:flex flex-col justify-center p-8 rounded-xl bg-gradient-to-br from-indigo-600 to-indigo-400 text-white shadow-lg">
+      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div className="hidden md:flex flex-col justify-center p-10 rounded-2xl bg-gradient-to-br from-indigo-600 to-indigo-400 text-white shadow-2xl">
           <div className="mb-6">
             <h2 className="text-3xl font-extrabold">Technician Portal</h2>
               <p className="mt-2 opacity-90">Sign in to view your assigned service requests and manage tasks.</p>
@@ -48,7 +48,7 @@ export default function TechLogin() {
           </div>
         </div>
 
-        <form onSubmit={submit} className="bg-white rounded-xl p-8 shadow-lg">
+        <form onSubmit={submit} className="bg-white rounded-2xl p-8 md:p-10 shadow-xl ring-1 ring-gray-100">
           <h3 className="text-2xl font-semibold mb-1 text-gray-900">Sign in to Technician</h3>
           <p className="text-sm text-gray-600 mb-6">Use your technician credentials to access assignments.</p>
 
@@ -58,7 +58,7 @@ export default function TechLogin() {
               <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16v16H4z" /><path d="M22 6l-10 7L2 6" /></svg>
               </span>
-              <input name="email" value={form.email} onChange={update} className="w-full pl-10 mt-1 p-2 border rounded-md focus:ring-2 focus:ring-indigo-200 text-gray-900 placeholder-gray-400" placeholder="you@company.com" required />
+              <input name="email" value={form.email} onChange={update} className="w-full pl-10 mt-1 p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-300 focus:border-indigo-300 text-gray-900 placeholder-gray-400" placeholder="you@company.com" required />
             </div>
           </label>
 
@@ -68,7 +68,7 @@ export default function TechLogin() {
               <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
               </span>
-              <input name="password" type={showPassword ? 'text' : 'password'} value={form.password} onChange={update} className="w-full pl-10 pr-10 mt-1 p-2 border rounded-md focus:ring-2 focus:ring-indigo-200 text-gray-900 placeholder-gray-400" placeholder="••••••••" required />
+              <input name="password" type={showPassword ? 'text' : 'password'} value={form.password} onChange={update} className="w-full pl-10 pr-10 mt-1 p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-300 focus:border-indigo-300 text-gray-900 placeholder-gray-400" placeholder="••••••••" required />
               <button type="button" onClick={() => setShowPassword(s => !s)} aria-label={showPassword ? 'Hide password' : 'Show password'} className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-indigo-600 focus:outline-none">
                 {showPassword ? (
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -88,13 +88,13 @@ export default function TechLogin() {
 
           <div className="flex items-center justify-between mb-6">
             <label className="inline-flex items-center text-sm text-gray-700">
-              <input type="checkbox" name="remember" checked={form.remember} onChange={update} className="form-checkbox h-4 w-4 text-indigo-600" />
+              <input type="checkbox" name="remember" checked={form.remember} onChange={update} className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" />
               <span className="ml-2">Remember me</span>
             </label>
             <Link to="#" className="text-sm text-indigo-600 hover:underline">Forgot password?</Link>
           </div>
 
-          <button className="w-full py-2 bg-indigo-600 text-white rounded-md shadow hover:bg-indigo-700 transition" disabled={loading}>
+          <button className="w-full py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-lg shadow-lg hover:opacity-95 transform hover:-translate-y-0.5 transition disabled:opacity-50" disabled={loading}>
             {loading ? 'Signing in…' : 'Sign in'}
           </button>
         </form>
