@@ -18,28 +18,28 @@ export default function BookingPage() {
               <div className="feature-item card-hover">
                 <div className="feature-icon">💡</div>
                 <div>
-                  <div className="font-medium ">Certified technicians</div>
+                  <div className="font-medium text-black">Certified technicians</div>
                   <div className="text-sm text-gray-600">Trained, verified and fully equipped.</div>
                 </div>
               </div>
               <div className="feature-item card-hover">
                 <div className="feature-icon">⚡</div>
                 <div>
-                  <div className="font-medium">Quick response</div>
+                  <div className="font-medium text-black">Quick response</div>
                   <div className="text-sm text-gray-600">Same-day or next-day appointments.</div>
                 </div>
               </div>
               <div className="feature-item card-hover">
                 <div className="feature-icon">🔒</div>
                 <div>
-                  <div className="font-medium">Transparent pricing</div>
+                  <div className="font-medium text-black">Transparent pricing</div>
                   <div className="text-sm text-gray-600">No hidden fees — upfront estimates.</div>
                 </div>
               </div>
               <div className="feature-item card-hover">
                 <div className="feature-icon">⭐</div>
                 <div>
-                  <div className="font-medium">Reliable service</div>
+                  <div className="font-medium text-black">Reliable service</div>
                   <div className="text-sm text-gray-600">High customer satisfaction rates.</div>
                 </div>
               </div>
