@@ -16,7 +16,7 @@ export default function TechDashboard() {
     if (token) headers['Authorization'] = `Bearer ${token}`
     fetch(`${API_URL}/api/bookings`, { headers })
       .then(r => r.json())
-      .then(data => { if (mounted) setAppointments(data) })
+      .then(data => { if (mounted) setAppointments(Array.isArray(data) ? data : []) })
       .catch(console.error)
       .finally(() => { if (mounted) setLoading(false) })
     return () => { mounted = false }
