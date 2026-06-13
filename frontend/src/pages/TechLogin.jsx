@@ -97,17 +97,6 @@ export default function TechLogin() {
           <button className="w-full py-2 bg-indigo-600 text-white rounded-md shadow hover:bg-indigo-700 transition" disabled={loading}>
             {loading ? 'Signing in…' : 'Sign in'}
           </button>
-
-          <div className="mt-4">
-            <div className="w-full flex justify-center text-sm text-gray-500">
-              <Link to="/" className="inline-flex items-center text-indigo-600 hover:underline transform transition-transform duration-200 hover:-translate-y-1 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M3 9.5L12 4l9 5.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z" />
-                </svg>
-                <span className="align-middle">Home</span>
-              </Link>
-            </div>
-          </div>
         </form>
       </div>
     </div>
