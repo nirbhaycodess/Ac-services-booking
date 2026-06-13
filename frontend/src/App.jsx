@@ -1,11 +1,12 @@
 import React from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import BookingPage from './pages/BookingPage'
 import TechLogin from './pages/TechLogin'
 import TechDashboard from './pages/TechDashboard'
 
 export default function App() {
+  const location = useLocation()
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 relative overflow-hidden">
       <header className="bg-gradient-to-r from-blue-800 to-indigo-900 text-white py-12 shadow-2xl border-b border-white/10">
@@ -26,11 +27,13 @@ export default function App() {
             </div>
           </div>
           
-          <div className="absolute right-6 top-6">
-            <Link to="/" aria-label="Home" className="inline-flex items-center justify-center w-10 h-10 bg-white/10 rounded-md hover:bg-white/20 transition">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9.5L12 4l9 5.5" /><path d="M9 22V12h6v10" /></svg>
-            </Link>
-          </div>
+          {location.pathname !== '/tech-login' && (
+            <div className="absolute right-6 top-6">
+              <Link to="/" aria-label="Home" className="inline-flex items-center justify-center w-10 h-10 bg-white/10 rounded-md hover:bg-white/20 transition">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9.5L12 4l9 5.5" /><path d="M9 22V12h6v10" /></svg>
+              </Link>
+            </div>
+          )}
         </div>
       </header>
 
