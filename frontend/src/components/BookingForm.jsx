@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+const API_URL = import.meta.env.VITE_API_URL || 'https://ac-repairing-booking.onrender.com'
+
 export default function BookingForm({ onCreated }) {
   const [form, setForm] = useState({ name: '', phone: '', email: '', address: '', city: '', landmark: '', district: '', pincode: '', repairType: '', date: '', time: '', message: '' })
   const [imageFile, setImageFile] = useState(null)
@@ -23,7 +25,7 @@ export default function BookingForm({ onCreated }) {
       formData.append('service', service)
       if (imageFile) formData.append('image', imageFile)
 
-      const res = await fetch('http://localhost:4000/api/bookings', {
+      const res = await fetch(`${API_URL}/api/bookings`, {
         method: 'POST',
         body: formData
       })

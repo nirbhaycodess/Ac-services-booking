@@ -18,7 +18,7 @@ export default function BookingPage() {
               <div className="feature-item card-hover">
                 <div className="feature-icon">💡</div>
                 <div>
-                  <div className="font-medium">Certified technicians</div>
+                  <div className="font-medium ">Certified technicians</div>
                   <div className="text-sm text-gray-600">Trained, verified and fully equipped.</div>
                 </div>
               </div>

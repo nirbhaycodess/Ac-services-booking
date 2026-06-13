@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+const API_URL = import.meta.env.VITE_API_URL || 'https://ac-repairing-booking.onrender.com'
+
 export default function TechDashboard() {
   const [appointments, setAppointments] = useState([])
   const [loading, setLoading] = useState(true)
@@ -12,7 +14,7 @@ export default function TechDashboard() {
     const headers = {}
     const token = localStorage.getItem('tech_token')
     if (token) headers['Authorization'] = `Bearer ${token}`
-    fetch('http://localhost:4000/api/bookings', { headers })
+    fetch(`${API_URL}/api/bookings`, { headers })
       .then(r => r.json())
       .then(data => { if (mounted) setAppointments(data) })
       .catch(console.error)
@@ -27,7 +29,7 @@ export default function TechDashboard() {
       const headers = { 'Content-Type': 'application/json' }
       const token = localStorage.getItem('tech_token')
       if (token) headers['Authorization'] = `Bearer ${token}`
-      const res = await fetch(`http://localhost:4000/api/bookings/${id}`, {
+      const res = await fetch(`${API_URL}/api/bookings/${id}`, {
         method: 'PATCH',
         headers,
         body: JSON.stringify({ status, note })
@@ -51,7 +53,7 @@ export default function TechDashboard() {
       const headers = {}
       const token = localStorage.getItem('tech_token')
       if (token) headers['Authorization'] = `Bearer ${token}`
-      const res = await fetch(`http://localhost:4000/api/bookings/${id}`, { method: 'DELETE', headers })
+      const res = await fetch(`${API_URL}/api/bookings/${id}`, { method: 'DELETE', headers })
       if (!res.ok) {
         let msg = `Delete failed: ${res.status}`
         try {

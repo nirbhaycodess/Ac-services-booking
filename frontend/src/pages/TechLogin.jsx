@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+const API_URL = import.meta.env.VITE_API_URL || 'https://ac-repairing-booking.onrender.com'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -16,7 +17,7 @@ export default function TechLogin() {
   const submit = e => {
     e.preventDefault()
     setLoading(true)
-    axios.post('http://localhost:4000/api/auth/tech-login', { email: form.email, password: form.password })
+    axios.post(`${API_URL}/api/auth/tech-login`, { email: form.email, password: form.password })
       .then(res => {
         const { token } = res.data
         localStorage.setItem('tech_token', token)
