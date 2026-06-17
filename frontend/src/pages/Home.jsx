@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
   const bg = 'https://shiptons.ca/wp-content/uploads/2023/05/Air-Conditioning-Maintenance-Service.webp'
+  const mobileBg = 'https://img.magnific.com/premium-photo/service-man-maintenance-air-conditioner_255667-47923.jpg?w=1480'
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    const update = () => setIsMobile(mq.matches)
+    update()
+    mq.addEventListener ? mq.addEventListener('change', update) : mq.addListener(update)
+    return () => { if (mq.removeEventListener) mq.removeEventListener('change', update); else mq.removeListener(update) }
+  }, [])
+
+  const bgToUse = isMobile ? mobileBg : bg
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center relative" style={{ backgroundImage: `url(${bg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div className="min-h-screen flex flex-col items-center justify-center relative home-bg" style={{ backgroundImage: `url(${bgToUse})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="absolute inset-0 bg-black/10" />
       <div className="relative w-full max-w-6xl mx-auto p-8 bg-white/10 backdrop-blur-sm rounded-3xl shadow-xl text-center text-white">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
