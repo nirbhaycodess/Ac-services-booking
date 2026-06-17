@@ -59,12 +59,6 @@ cp .env.example .env
 npm run dev
 ```
 
-Notes for a resume / interview
------------------------------
-- Explain the booking lifecycle and why tracking tokens or OTPs are recommended for anonymous lookups.
-- Describe how you would harden the API for production: add input validation, rate limiting, helmet, secure file scanning, and store only hashed tracking tokens.
-- Discuss scaling paths: move uploads to S3, add Redis for caching and session handling, and deploy with Docker + CI.
-
 Where to look in the code
 ------------------------
 - Booking model: `backend/models/Booking.js`
