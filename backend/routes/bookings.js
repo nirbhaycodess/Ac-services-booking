@@ -55,10 +55,18 @@ router.post('/', upload.single('image'), async (req, res) => {
 // List bookings
 router.get('/', async (req, res) => {
   try {
-    const { status } = req.query
+    const { status, phone, email } = req.query
     const filter = {}
     if (status) filter.status = status
-    const bookings = await Booking.find(filter).sort({ createdAt: -1 });
+    if (phone) filter.phone = phone
+    if (email) filter.email = email
+
+    // when searching by phone/email from an anonymous user, return limited fields
+    const projection = (phone || email)
+      ? { status: 1, note: 1, date: 1, time: 1, createdAt: 1, updatedAt: 1, service: 1, repairType: 1, imageUrl: 1 }
+      : null
+
+    const bookings = await Booking.find(filter, projection).sort({ createdAt: -1 });
     res.json(bookings);
   } catch (err) {
     res.status(500).json({ error: err.message });
