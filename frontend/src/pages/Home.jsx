@@ -18,8 +18,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative home-bg" style={{ backgroundImage: `url(${bgToUse})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      <div className="absolute inset-0 bg-black/10" />
-      <div className="relative w-full max-w-6xl mx-auto p-8 bg-white/10 backdrop-blur-sm rounded-3xl shadow-xl text-center text-white">
+      <div className="absolute inset-0 bg-black/5" />
+      <div className="relative w-full max-w-6xl mx-auto p-8 bg-transparent rounded-3xl text-center text-white">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-lg">Welcome to AC Repair Booking</h2>
